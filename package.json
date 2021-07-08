@@ -1,0 +1,35 @@
+{
+  "name": "babel-jsx-pragma-module-auto-import",
+  "version": "1.0.0",
+  "description": "use jsx to create element and auto import the self define module by using self define babel pragma, load module corresponding to JSX pragma.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaqiinono/babel-jsx-pragma-module-auto-import.git"
+  },
+  "dependencies": {
+    "@babel/plugin-syntax-jsx": "^7.14.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.16",
+    "@babel/eslint-parser": "^7.13.14",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13"
+  },
+  "keywords": [
+    "babel",
+    "jsx",
+    "pragma",
+    "auto",
+    "babel-plugin"
+  ],
+  "author": "songmeinuo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kaqiinono/babel-jsx-pragma-module-auto-import/issues"
+  },
+  "homepage": "https://github.com/kaqiinono/babel-jsx-pragma-module-auto-import#readme"
+}
