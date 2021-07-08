@@ -3,15 +3,15 @@ module.exports = babel => {
 
     function addPragmaImport(path, state) {
         const importDeclaration = t.importDeclaration(
-            [t.importSpecifier(t.identifier(state.opts.import), t.identifier(state.opts.import))],
-            t.stringLiteral(state.opts.module)
+            [t.importSpecifier(t.identifier(state.opts.name), t.identifier(state.opts.name))],
+            t.stringLiteral(state.opts.path)
         );
         path.get('body')[0].insertBefore(importDeclaration);
     }
 
     return {
         pre() {
-            if (!(this.opts.module && this.opts.import)) {
+            if (!(this.opts.path && this.opts.name)) {
                 throw new Error('You must specify `module` and `import`');
             }
         },
@@ -25,7 +25,7 @@ module.exports = babel => {
                                 return (
                                     b.specifiers.findIndex(spec => {
                                         if (spec.type === 'ImportDefaultSpecifier' || spec.type === 'ImportSpecifier') {
-                                            return spec.local.name === state.opts.import;
+                                            return spec.local.name === state.opts.name;
                                         }
                                         return false;
                                     }) > -1
