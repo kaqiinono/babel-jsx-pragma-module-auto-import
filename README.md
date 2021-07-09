@@ -9,21 +9,33 @@ use jsx to create element and auto import the self define module by using self d
   <a href="https://www.npmjs.com/package/babel-jsx-pragma-module-auto-import"><img src="https://img.shields.io/npm/l/babel-jsx-pragma-module-auto-import.svg" alt="License"></a>
 </p>
 
-# InfernoJS Babel Plugin
+# Introduce
 
 > Plugin for babel 7+ to enable JSX for project, and it's a extension for @babel/preset-react to solve the problem module cannot auto import when using pragma.
 
-```js
-  presets: [
-    [
-        '@babel/preset-react',
-        {
-         // 自定义createElement替代React.createElement
-            pragma: 'createElement'
-        }
-    ],
-        '@babel/preset-env'
-    ]
+@babel/preset-react has a pragma option that's used when transforming JSX to function calls instead of the default function React.createElement.
+
+This Babel plugin is a companion to that feature that allows you to dynamically load a module associated with the pragma value.
+
+Example:
+
+Given this file:
+```
+const jsxComp = () => {
+    return <div>anything</div>
+}
+
+export default jsxComp;
+```
+After use the plugin to auto import:
+```
+import { createElement } from "./lib";
+
+const jsxComp = () => {
+  return <div>anything</div>;
+};
+
+export default jsxComp;
 ```
 
 ## How to install
@@ -43,7 +55,8 @@ Example on a `.babelrc` file that will work:
 Make sure plugin is added before babel module transformers
 
 ```js
-{
+const path = require('path');
+module.exports = {
     presets: [
         [
             '@babel/preset-react',
@@ -55,12 +68,11 @@ Make sure plugin is added before babel module transformers
         '@babel/preset-env'
     ],
     plugins: [
-        ['@babel/plugin-syntax-jsx'],
         [
-            path.resolve(__dirname, './babel-element-auto-import.js'),
+            'module:babel-jsx-pragma-module-auto-import',
             {
-                path: 'module path',
-                name: 'module name'
+                path: './lib',
+                name: 'createElement'
             }
         ]
     ]

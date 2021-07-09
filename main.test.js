@@ -3,7 +3,7 @@ const options = {
     plugins: [
         ['@babel/plugin-syntax-jsx'],
         ['./main.js', {
-            path: 'lib',
+            path: './lib',
             name: 'createElement'
         }],
     ]
